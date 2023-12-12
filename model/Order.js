@@ -4,25 +4,20 @@ const itemSchema = new Schema({
   productName: {
     type: String,
     required: true,
-    unique: true
   },
   price: {
     type: Number,
-    required: true
-  }
-})
+    required: true,
+  },
+},{_id:false})
 
-
-const orderSchema = new Schema({
-  sellerId: {
+const orderSchema = new mongoose.Schema({
+  _id: {
     type: String,
     required: true,
-    unique: true
-  }, 
-  items: {
-    type: [itemSchema],
-    required: true
-  }
-});
+  },
+  items: [ itemSchema ],
+},
+);
 
 export const Order = mongoose.model("Order",orderSchema)
